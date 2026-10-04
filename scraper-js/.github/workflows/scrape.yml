@@ -49,7 +49,7 @@ jobs:
             echo "manageCompany=false in config/scraper.json -- skipping (another scraper owns this CIF's company record)"
             exit 0
           fi
-          CIF=$(jq -r '.id' scraper/config/company.json)
+          CIF=$(printf '%08d' "$(jq -r '.id' scraper/config/company.json)")
           LEGAL_NAME=$(jq -r '.company' scraper/config/company.json)
           BRAND=$(jq -r '.brand' scraper/config/company.json)
           WEBSITE=$(jq -r '.website[0]' scraper/config/company.json)
@@ -76,9 +76,17 @@ jobs:
             -H "Content-Type: application/json" \
             --data-binary @company_data.json
 
-          FINAL=$(curl -s \
-            "https://api.peviitor.ro/v1/firme/company/?cif=${CIF}" | jq '.total')
+          FINAL=0
 
+          for ATTEMPT in 1 2 3 4 5 6; do
+
+            FINAL=$(curl -s "https://api.peviitor.ro/v1/firme/company/?cif=${CIF}" | jq '.total // 0')
+
+            [ "$FINAL" -ge 1 ] && break
+
+            sleep 5
+
+          done
           echo "${BRAND} count after upsert: $FINAL"
 
           if [ "$FINAL" -ge "1" ]; then

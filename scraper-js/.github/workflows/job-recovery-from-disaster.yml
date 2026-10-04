@@ -27,7 +27,7 @@ jobs:
         run: |
           set -e
 
-          CIF=$(jq -r '.id' scraper/config/company.json)
+          CIF=$(printf '%08d' "$(jq -r '.id' scraper/config/company.json)")
           LEGAL_NAME=$(jq -r '.company' scraper/config/company.json)
           BRAND=$(jq -r '.brand' scraper/config/company.json)
           WEBSITE=$(jq -r '.website[0]' scraper/config/company.json)

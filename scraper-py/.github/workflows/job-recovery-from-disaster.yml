@@ -27,7 +27,7 @@ jobs:
         run: |
           set -e
 
-          CIF=$(jq -r '.id' config/company.json)
+          CIF=$(printf '%08d' "$(jq -r '.id' config/company.json)")
           LEGAL_NAME=$(jq -r '.company' config/company.json)
           BRAND=$(jq -r '.brand' config/company.json)
           WEBSITE=$(jq -r '.website[0]' config/company.json)
