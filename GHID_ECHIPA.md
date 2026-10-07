@@ -34,8 +34,8 @@ logică:
 
 | | Stack | Teste |
 |---|---|---|
-| `scraper-js/` | Node.js + `node-fetch` + Cheerio + Jest | 131 teste |
-| `scraper-py/` | Python 3.10+ + `requests` + BeautifulSoup + pytest (+ opțional [Scrapling](https://github.com/D4Vinci/Scrapling)) | 54 teste |
+| `scraper-js/` | Node.js + `node-fetch` + Cheerio + Jest | 200 teste |
+| `scraper-py/` | Python 3.10+ + `requests` + BeautifulSoup + pytest (+ opțional [Scrapling](https://github.com/D4Vinci/Scrapling)) | 172 teste |
 
 Nu contează cu care lucrezi mai bine — alege limbajul pe care îl cunoști sau
 pe care restul echipei deja îl folosește pentru compania respectivă. Ambele

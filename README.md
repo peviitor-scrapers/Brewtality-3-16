@@ -11,8 +11,8 @@ ready-to-commit scraper. Details in
 
 | | |
 |---|---|
-| [`scraper-js/`](scraper-js/) | Node.js (ESM) · `node-fetch` + Cheerio · Jest · **131 tests** |
-| [`scraper-py/`](scraper-py/) | Python 3.10+ · `requests` + BeautifulSoup · pytest · **54 tests** · optional [Scrapling](https://github.com/D4Vinci/Scrapling) layer |
+| [`scraper-js/`](scraper-js/) | Node.js (ESM) · `node-fetch` + Cheerio · Jest · **200 tests** |
+| [`scraper-py/`](scraper-py/) | Python 3.10+ · `requests` + BeautifulSoup · pytest · **172 tests** · optional [Scrapling](https://github.com/D4Vinci/Scrapling) layer |
 
 Both produce the same output contract — jobs upserted to `api.peviitor.ro` — and
 both target a Romanian company's own careers site + ANOFM.

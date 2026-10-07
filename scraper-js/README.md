@@ -21,7 +21,7 @@ Jest.
 
 ```bash
 npm install
-npm run test:unit        # 131 tests — pass with placeholders in place
+npm run test:unit        # 151 tests — pass with placeholders in place
 npm run scrape           # runs the full pipeline (no-op until configured)
 ```
 

@@ -178,7 +178,7 @@ before you've touched a single selector:
   ...
 
 Test Suites: 8 passed, 8 total
-Tests:       131 passed, 131 total
+Tests:       151 passed, 151 total
 Snapshots:   0 total
 Time:        ~3 s
 ```
