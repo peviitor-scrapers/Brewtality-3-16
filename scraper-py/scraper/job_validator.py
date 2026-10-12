@@ -117,4 +117,8 @@ def validate_by_browser(
         expired = status >= 400 or any(kw in lower for kw in keywords)
         return _result(url, "expired" if expired else "active", status, title or None)
     except Exception as exc:  # noqa: BLE001 - any browser failure is reported, not fatal
+        if "Executable doesn't exist" in str(exc):
+            # playwright is installed but `playwright install chromium` was never run
+            log.debug("chromium not installed -- falling back to validate_by_content for %r", url)
+            return validate_by_content(url, keywords=keywords)
         return _result(url, "error", error=str(exc))

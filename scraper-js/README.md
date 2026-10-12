@@ -52,6 +52,22 @@ npm run test:e2e           # self-skips until configured; live careers-site + AP
 npm run test:consistency   # needs GITHUB_REPOSITORY + GITHUB_TOKEN (for a derived repo)
 ```
 
+## JavaScript-rendered career sites (Playwright)
+
+If the job list is built client-side, `node-fetch` only sees an empty shell. Set
+`rendering` in `scraper/config/scraper.json`:
+
+```json
+"rendering": { "mode": "browser", "waitSelector": ".job-card", "timeoutMs": 30000 }
+```
+
+`static` (default) never launches a browser; `browser` always renders;
+`auto` renders only when the static HTML parses to zero jobs. The scrape
+workflow installs Chromium only when the mode is not `static`. Locally:
+`npx playwright install chromium`. Code: `scraper/browser.js`; tests:
+`tests/unit/browser.test.js` (fake Playwright) and
+`tests/integration/browser-live.test.js` (real Chromium, skipped if absent).
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Managed by

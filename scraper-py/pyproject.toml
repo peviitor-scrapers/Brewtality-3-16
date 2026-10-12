@@ -11,6 +11,7 @@ dependencies = [
     "requests>=2.31",
     "beautifulsoup4>=4.12",
     "lxml>=5.0",
+    "playwright>=1.40",
 ]
 
 [project.optional-dependencies]
@@ -18,7 +19,7 @@ dependencies = [
 adaptive = ["scrapling>=0.2"]
 # Optional headless-browser job validation. See scraper/job_validator.py.
 browser = ["playwright>=1.40"]
-dev = ["pytest>=8.0", "requests-mock>=1.11"]
+dev = ["pytest>=8.0", "requests-mock>=1.11", "playwright>=1.40"]
 
 [tool.setuptools]
 packages = ["scraper"]
@@ -26,3 +27,4 @@ packages = ["scraper"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 filterwarnings = ["ignore::DeprecationWarning"]
+markers = ["browser: drives a real Chromium via Playwright (skipped when browsers are not installed)"]

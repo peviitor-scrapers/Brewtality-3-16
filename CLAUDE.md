@@ -29,6 +29,13 @@ Show a `git diff --stat`. Flag before committing (and do not commit until confir
   new cascade level.
 - Temp files in `tmp/` only.
 
+## Browser rendering (Playwright)
+
+`scraper/browser.js` and `scraper/browser.py` are **generic** like the self-healing
+ modules: keep them in step across variants. Only `rendering` in the scraper config is
+ site-specific; the default stays `static` so a derived scraper needs no browser unless it
+ opts in. Every new rendering behaviour needs a unit test with a fake Playwright.
+
 ## The derivation scripts
 
 `setup.js` / `setup.py` (repo root) are functional mirrors — a change to one

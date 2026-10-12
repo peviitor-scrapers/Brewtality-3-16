@@ -48,6 +48,22 @@ own `try/except`; a failed or rescued step is logged immediately. If a whole
 run scrapes nothing, the **canary** raises before any file or API write. Full
 detail in [`ai/SELF-HEALING.md`](ai/SELF-HEALING.md).
 
+## JavaScript-rendered career sites (Playwright)
+
+If the job list is built client-side, `requests` only sees an empty shell. Set
+`rendering` in `config/scraper.json`:
+
+```json
+"rendering": {"mode": "browser", "waitSelector": ".job-card", "timeoutMs": 30000}
+```
+
+`static` (default) never launches a browser; `browser` always renders;
+`auto` renders only when the static HTML parses to zero jobs. The scrape
+workflow installs Chromium only when the mode is not `static`. Locally:
+`python -m playwright install chromium`. Code: `scraper/browser.py`; tests:
+`tests/test_browser.py` (fake Playwright, plus one `@pytest.mark.browser` test
+against real Chromium, skipped if absent: `pytest -m browser`).
+
 ## License
 
 MIT.

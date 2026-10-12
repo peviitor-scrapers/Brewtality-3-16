@@ -34,6 +34,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -e .
+      - name: Install Chromium (only when the scraper renders in a browser)
+        run: |
+          if jq -e '(.rendering.mode // "static") != "static"' config/scraper.json > /dev/null; then
+            python -m playwright install --with-deps chromium
+          fi
       - name: Pre-scrape tests
         # Non-blocking, defense in depth: tests/test_anaf.py already mocks
         # demoanaf.ro/cuifirma.ro with requests_mock, and

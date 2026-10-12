@@ -1,5 +1,6 @@
 """scraper.job_validator -- HEAD / content / browser URL validation."""
 
+import sys
 import requests
 
 from scraper import job_validator as jv
@@ -65,10 +66,34 @@ def test_validate_by_content_error_on_network_failure(requests_mock):
 
 
 def test_validate_by_browser_falls_back_to_content_when_playwright_missing(requests_mock, monkeypatch):
-    # Playwright isn't a project dependency (it's the optional `browser` extra),
-    # so in this test environment the import fails and we must transparently
-    # fall back to validate_by_content -- exactly like the JS template.
+    # Playwright is imported lazily; when the package is absent we must
+    # transparently fall back to validate_by_content -- exactly like the JS template.
+    # (Simulated, so the test is hermetic whether or not playwright is installed.)
+    monkeypatch.setitem(sys.modules, "playwright", None)
+    monkeypatch.setitem(sys.modules, "playwright.sync_api", None)
     requests_mock.get("https://x/jobs/a/", status_code=200, text="<html><title>T</title><body>ok</body></html>")
     result = jv.validate_by_browser("https://x/jobs/a/")
     assert result["status"] == "active"
     assert result["title"] == "T"
+
+
+def test_validate_by_browser_falls_back_to_content_when_chromium_not_installed(requests_mock, monkeypatch):
+    # Package present but `playwright install chromium` never ran: launch raises
+    # "Executable doesn't exist ..." -- fall back instead of reporting an error.
+    import types
+    from contextlib import contextmanager
+
+    @contextmanager
+    def fake_sync_playwright():
+        class _PW:
+            class chromium:  # noqa: N801
+                @staticmethod
+                def launch(**kw):
+                    raise RuntimeError("BrowserType.launch: Executable doesn't exist at /x")
+        yield _PW
+
+    monkeypatch.setitem(sys.modules, "playwright", types.ModuleType("playwright"))
+    monkeypatch.setitem(sys.modules, "playwright.sync_api", types.SimpleNamespace(sync_playwright=fake_sync_playwright))
+    requests_mock.get("https://x/jobs/a/", status_code=200, text="<html><title>T</title><body>ok</body></html>")
+    result = jv.validate_by_browser("https://x/jobs/a/")
+    assert result["status"] == "active"

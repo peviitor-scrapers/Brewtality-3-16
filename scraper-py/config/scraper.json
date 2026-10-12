@@ -8,6 +8,7 @@
     "maxDelaySec": 60.0,
     "retryStatus": [429, 500, 502, 503, 504]
   },
+  "rendering": {"mode": "static", "waitSelector": "", "timeoutMs": 30000},
   "staleJobDeletion": false,
   "manageCompany": true,
   "defaultLocation": ["{{DEFAULT_CITY}}"],

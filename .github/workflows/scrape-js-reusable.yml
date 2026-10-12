@@ -26,6 +26,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Chromium (only when the scraper renders in a browser)
+        run: |
+          if jq -e '(.rendering.mode // "static") != "static"' scraper/config/scraper.json > /dev/null; then
+            npx playwright install --with-deps chromium
+          fi
+
       - name: Ensure company exists in company core
         # Real write, so it must respect BOTH gates real writes need:
         #   - manageCompany (config/scraper.json) -- skip entirely once another

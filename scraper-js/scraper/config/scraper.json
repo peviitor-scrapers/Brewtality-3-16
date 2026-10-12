@@ -2,6 +2,7 @@
   "userAgent": "job_seeker_ro_spider",
   "requestTimeoutMs": 10000,
   "pageDelayMs": 1000,
+  "rendering": { "mode": "static", "waitSelector": "", "timeoutMs": 30000 },
   "staleJobDeletion": false,
   "manageCompany": true,
   "defaultLocation": ["{{DEFAULT_CITY}}"],

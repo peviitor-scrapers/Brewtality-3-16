@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
-from . import api, fetch, job_validator
+from . import api, browser, fetch, job_validator
 from . import company as company_validation
 from .config import COMPANY_CIF, OWN_URL_PREFIX, company, scraper
 from .markdown_generator import generate_jobs_markdown
@@ -112,9 +112,8 @@ def scrape_careers() -> list[dict]:
     entries = fetch_sitemap_job_urls()
 
     try:
-        resp = fetch.get(listing_url, label="listing")
-        resp.raise_for_status()
-        items = parse_listing(resp.text)
+        html = browser.get_html(listing_url, label="listing", parse_ok=lambda h: bool(parse_listing(h)))
+        items = parse_listing(html)
     except Exception as exc:  # noqa: BLE001
         log.info("listing error: %s", exc)
         items = []

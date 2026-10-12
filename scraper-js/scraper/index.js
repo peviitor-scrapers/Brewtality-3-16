@@ -6,6 +6,7 @@ import { querySOLR, upsertJobs, upsertCompany, deleteJobByUrl } from "./api.js";
 import { generateJobsMarkdown } from "./markdown-generator.js";
 import { filterValidJobs, assertScrapeYieldedJobs } from "./validate.js";
 import { validateByContent } from "./job-validator.js";
+import { getHtml } from "./browser.js";
 import { locateArticles, firstMatch, regexText, textFromHtml } from "./self-healing.js";
 import companyConfig from "./config/company.js";
 import scraperConfig, { userAgent } from "./config/scraper.js";
@@ -159,12 +160,8 @@ async function fetchSitemapJobUrls() {
 }
 
 async function fetchListing() {
-  const res = await fetch(scraperConfig.sources.listing, {
-    timeout: TIMEOUT,
-    headers: { "User-Agent": userAgent }
-  });
-  if (!res.ok) throw new Error(`listing returned ${res.status}`);
-  return res.text();
+  // static fetch by default; rendering.mode in scraper.json switches to a headless browser
+  return getHtml(scraperConfig.sources.listing, { parseOk: (html) => parseListing(html).length > 0 });
 }
 
 // Strip HTML tags / collapse whitespace, cap at the job-model title limit.
