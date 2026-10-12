@@ -339,6 +339,105 @@
       "template_version": "v1",
       "status": "active",
       "notes": "Transferred from sebiboga. Gem job-board API (api.gem.com). Premium layer (retry, canary, dry-run, official-ANAF fallback). CODEOWNERS/scraperFile repointed to TheTatu13 (2026-10-03). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+    },
+    {
+      "company": "ALRO SA",
+      "brand": "Alro",
+      "cif": "1515374",
+      "owner": "peviitor-scrapers",
+      "repo": "alro-nodejs-scraper",
+      "local_dir": "alro-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "URSUS BREWERIES SA",
+      "brand": "Ursus Breweries",
+      "cif": "199095",
+      "owner": "peviitor-scrapers",
+      "repo": "ursus-breweries-nodejs-scraper",
+      "local_dir": "ursus-breweries-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "AUCHAN ROMANIA SA",
+      "brand": "Auchan",
+      "cif": "17233051",
+      "owner": "peviitor-scrapers",
+      "repo": "auchan-romania-nodejs-scraper",
+      "local_dir": "auchan-romania-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "MED LIFE SA",
+      "brand": "Medlife",
+      "cif": "8422035",
+      "owner": "peviitor-scrapers",
+      "repo": "med-life-nodejs-scraper",
+      "local_dir": "med-life-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "CARREFOUR ROMANIA SA",
+      "brand": "Carrefour",
+      "cif": "11588780",
+      "owner": "peviitor-scrapers",
+      "repo": "carrefour-romania-nodejs-scraper",
+      "local_dir": "carrefour-romania-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "ROUMASPORT SRL",
+      "brand": "Decathlon",
+      "cif": "23727785",
+      "owner": "peviitor-scrapers",
+      "repo": "roumasport-nodejs-scraper",
+      "local_dir": "roumasport-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "HELP NET FARMA SA",
+      "brand": "Help Net",
+      "cif": "14169353",
+      "owner": "peviitor-scrapers",
+      "repo": "help-net-farma-nodejs-scraper",
+      "local_dir": "help-net-farma-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "BITDEFENDER SRL",
+      "brand": "Bitdefender",
+      "cif": "18189442",
+      "owner": "peviitor-scrapers",
+      "repo": "bitdefender-nodejs-scraper",
+      "local_dir": "bitdefender-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "SILCOTUB SA",
+      "brand": "Tenaris Silcotub",
+      "cif": "15117182",
+      "owner": "peviitor-scrapers",
+      "repo": "silcotub-nodejs-scraper",
+      "local_dir": "silcotub-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
     }
   ]
 }
