@@ -438,6 +438,39 @@
       "language": "js",
       "template_version": "v1",
       "status": "active"
+    },
+    {
+      "company": "BMW TECHWORKS ROMANIA S.R.L.",
+      "brand": "BMW TechWorks Romania",
+      "cif": "49775344",
+      "owner": "peviitor-scrapers",
+      "repo": "bmw-techworks-romania-nodejs-scraper",
+      "local_dir": "bmw-techworks-romania-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "AROBS TRANSILVANIA SOFTWARE S.A.",
+      "brand": "AROBS",
+      "cif": "11291045",
+      "owner": "peviitor-scrapers",
+      "repo": "arobs-transilvania-software-sa-nodejs-scraper",
+      "local_dir": "arobs-transilvania-software-sa-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "BORG DESIGN SRL",
+      "brand": "BORG DESIGN",
+      "cif": "14837428",
+      "owner": "peviitor-scrapers",
+      "repo": "borgdesign-srl-nodejs-scraper",
+      "local_dir": "borgdesign-srl-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
     }
   ]
 }
