@@ -1,0 +1,25 @@
+{
+  "commit_message": "fix: stop daily failing CI runs and Dependabot noise\n\n- anaf.js: clear error when ANAF/CUIScan/CUIFirma answer with HTML instead of JSON\n- integration tests: skip (warn) on upstream ANAF/CUIScan outages instead of failing\n- dependabot: monthly, grouped minor/patch, ignore semver-major, max 2 open PRs\n\nCo-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01LSoxPhw43RQtGhmzjzYshS",
+  "changes": [
+    {
+      "lang": "js",
+      "src": ".github/dependabot.yml"
+    },
+    {
+      "lang": "js",
+      "src": "scraper/anaf.js"
+    },
+    {
+      "lang": "js",
+      "src": "tests/integration/workflow.test.js"
+    },
+    {
+      "lang": "js",
+      "src": "tests/unit/anaf-json.test.js"
+    },
+    {
+      "lang": "py",
+      "src": ".github/dependabot.yml"
+    }
+  ]
+}
