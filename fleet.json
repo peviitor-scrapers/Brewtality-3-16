@@ -471,6 +471,94 @@
       "language": "js",
       "template_version": "v1",
       "status": "active"
+    },
+    {
+      "company": "ACCESA IT SYSTEMS SRL",
+      "brand": "Accesa",
+      "cif": "32930567",
+      "owner": "peviitor-scrapers",
+      "repo": "accesa-it-systems-nodejs-scraper",
+      "local_dir": "accesa-it-systems-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "GARMIN CLUJ SRL",
+      "brand": "Garmin",
+      "cif": "18850101",
+      "owner": "peviitor-scrapers",
+      "repo": "garmin-cluj-nodejs-scraper",
+      "local_dir": "garmin-cluj-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "INTERTEK INDUSTRY SERVICES ROMANIA SRL",
+      "brand": "Intertek",
+      "cif": "12841309",
+      "owner": "peviitor-scrapers",
+      "repo": "intertek-industry-services-romania-nodejs-scraper",
+      "local_dir": "intertek-industry-services-romania-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "SEDONA DIGITAL S.R.L.",
+      "brand": "Sedona Digital",
+      "cif": "30175977",
+      "owner": "peviitor-scrapers",
+      "repo": "sedona-digital-nodejs-scraper",
+      "local_dir": "sedona-digital-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "ZITEC COM SRL",
+      "brand": "Zitec",
+      "cif": "15496736",
+      "owner": "peviitor-scrapers",
+      "repo": "zitec-com-nodejs-scraper",
+      "local_dir": "zitec-com-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "SOF MEDICA S.A.",
+      "brand": "Sofmedica",
+      "cif": "6719715",
+      "owner": "peviitor-scrapers",
+      "repo": "sof-medica-nodejs-scraper",
+      "local_dir": "sof-medica-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "NUVEI SERVICES ROMANIA S.R.L.",
+      "brand": "Nuvei",
+      "cif": "19016717",
+      "owner": "peviitor-scrapers",
+      "repo": "nuvei-services-romania-nodejs-scraper",
+      "local_dir": "nuvei-services-romania-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
+    },
+    {
+      "company": "FME SRL",
+      "brand": "FME Romania",
+      "cif": "17769115",
+      "owner": "peviitor-scrapers",
+      "repo": "fme-nodejs-scraper",
+      "local_dir": "fme-nodejs-scraper",
+      "language": "js",
+      "template_version": "v1",
+      "status": "active"
     }
   ]
 }
