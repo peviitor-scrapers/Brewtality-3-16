@@ -1,0 +1,18 @@
+{
+  "commit_message": "fix(company): match the peviitor company by exact name instead of taking the first result\n\nPropagated from the Brewtality-3-16 template (commit 79c899c). api.peviitor.ro/v1/company/?name= does not filter server-side, so taking companies[0] could return an unrelated company and label this scraper's jobs with its name. The scraper now keeps only a case-insensitive exact name match and falls back to the ANAF name when nothing matches.",
+  "layouts": [
+    "template"
+  ],
+  "changes": [
+    {
+      "lang": "js",
+      "src": "scraper/company.js",
+      "requires_text": "return data.companies?.[0] || null;"
+    },
+    {
+      "lang": "py",
+      "src": "scraper/company.py",
+      "requires_text": "return companies[0] if companies else None"
+    }
+  ]
+}
