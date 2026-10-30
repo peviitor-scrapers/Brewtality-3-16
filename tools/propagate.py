@@ -21,6 +21,19 @@ Plan file format (see changes/EXAMPLE.json):
   ]
 }
 
+Optional plan keys (both default to "no restriction"):
+  "layouts": ["template"]   plan-level. Only repos whose fleet.json "layout"
+                            is in this list are touched (a repo with no
+                            "layout" counts as "template"). Layouts: template
+                            (scraper/ subfolder, scraper/config/*), flat (older
+                            EPAM-derived root layout) and legacy (pre-template).
+  "requires_text": "..."    change-level. The change is applied only if the
+                            destination file already exists and contains this
+                            text (e.g. only fix files that still have the bug).
+
+With --dry-run the clone is fetched (read-only) and every destination is read
+from origin/main, so the report matches what a real run would do after its pull.
+
 "src" is relative to scraper-py/ or scraper-js/ in this template repo.
 "dest" is optional and defaults to the same relative path inside the
 derived repo (which is how the template's scraper-<lang>/ contents map to
@@ -65,8 +78,11 @@ def clone_url(scraper: dict) -> str:
 def ensure_repo(scraper: dict, dry_run: bool) -> pathlib.Path:
     repo_dir = PARENT / scraper["local_dir"]
     if repo_dir.exists():
-        print(f"    pulling latest main into existing clone")
-        if not dry_run:
+        if dry_run:
+            print("    (dry-run: fetching origin read-only; destinations are read from origin/main)")
+            run(["git", "fetch", "origin"], cwd=repo_dir, check=False)
+        else:
+            print("    pulling latest main into existing clone")
             run(["git", "fetch", "origin"], cwd=repo_dir)
             run(["git", "checkout", "main"], cwd=repo_dir)
             run(["git", "pull", "--ff-only", "origin", "main"], cwd=repo_dir)
@@ -77,7 +93,22 @@ def ensure_repo(scraper: dict, dry_run: bool) -> pathlib.Path:
     return repo_dir
 
 
+def read_dest(repo_dir: pathlib.Path, rel: str, dry_run: bool) -> str | None:
+    """Current content of rel in the target repo (origin/main in dry-run), or None if absent."""
+    if dry_run:
+        if not repo_dir.exists():
+            return None
+        r = subprocess.run(
+            ["git", "-C", str(repo_dir), "show", f"origin/main:{rel}"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+        )
+        return r.stdout if r.returncode == 0 else None
+    path = repo_dir / rel
+    return path.read_text(encoding="utf-8", errors="replace") if path.exists() else None
+
+
 def apply_changes(scraper: dict, repo_dir: pathlib.Path, changes: list[dict], dry_run: bool) -> list[str]:
+    """Copy the plan's files into repo_dir; return only the destinations that actually change."""
     lang = scraper["language"]
     touched: list[str] = []
     for change in changes:
@@ -88,7 +119,22 @@ def apply_changes(scraper: dict, repo_dir: pathlib.Path, changes: list[dict], dr
         dest = repo_dir / dest_rel
         if not src.exists():
             raise SystemExit(f"source file missing: {src}")
-        print(f"    {src.relative_to(ROOT)} -> {dest.relative_to(repo_dir)}")
+        current = read_dest(repo_dir, dest_rel, dry_run)
+        needle = change.get("requires_text")
+        if needle is not None and (current is None or needle not in current):
+            reason = "destination missing" if current is None else f"destination lacks {needle!r}"
+            print(f"    SKIP {dest_rel}: precondition not met ({reason})")
+            continue
+        new_text = src.read_text(encoding="utf-8", errors="replace").replace("\r\n", "\n")
+        if current is None:
+            status = "create"
+        elif current.replace("\r\n", "\n") == new_text:
+            status = "identical"
+        else:
+            status = "modify"
+        print(f"    {status.upper():9} {src.relative_to(ROOT)} -> {dest_rel}")
+        if status == "identical":
+            continue
         touched.append(dest_rel)
         if not dry_run:
             dest.parent.mkdir(parents=True, exist_ok=True)
@@ -122,7 +168,12 @@ def main() -> None:
     parser.add_argument("--only", help="comma-separated repo names to limit to (default: all active repos)")
     parser.add_argument("--dry-run", action="store_true", help="show what would happen, change nothing")
     parser.add_argument("--no-push", action="store_true", help="commit locally but don't push")
+    parser.add_argument("--parent", type=pathlib.Path,
+                        help="folder holding the derived-repo clones (default: the folder containing this template repo)")
     args = parser.parse_args()
+    if args.parent:
+        global PARENT
+        PARENT = args.parent.resolve()
 
     plan = load_json(args.plan)
     fleet = load_json(FLEET_JSON)
@@ -135,6 +186,13 @@ def main() -> None:
             print(f"WARNING: --only names not found among active repos: {unknown}")
         active = [s for s in active if s["repo"] in only or s["local_dir"] in only]
 
+    layouts = plan.get("layouts")
+    excluded: list[str] = []
+    if layouts:
+        kept = [s for s in active if s.get("layout", "template") in layouts]
+        excluded = [f"{s['repo']} ({s.get('layout', 'template')})" for s in active if s not in kept]
+        active = kept
+
     if not active:
         raise SystemExit("no matching active repos -- nothing to do")
 
@@ -143,6 +201,8 @@ def main() -> None:
 
     failures: list[str] = []
     skipped: list[str] = []
+    changed: list[str] = []
+    unchanged: list[str] = []
     for scraper in active:
         relevant = [c for c in plan["changes"] if c["lang"] == scraper["language"]]
         if not relevant:
@@ -151,13 +211,23 @@ def main() -> None:
         print(f"== {scraper['repo']} ({scraper['language']}) ==")
         repo_dir = ensure_repo(scraper, args.dry_run)
         touched = apply_changes(scraper, repo_dir, relevant, args.dry_run)
+        if not touched:
+            print("    nothing to change in this repo")
+            unchanged.append(scraper["repo"])
+            print()
+            continue
+        changed.append(scraper["repo"])
         ok = commit_and_push(repo_dir, touched, plan["commit_message"], args.dry_run, push=not args.no_push)
         if not ok:
             failures.append(scraper["repo"])
         print()
 
+    if excluded:
+        print(f"Excluded by plan layouts {layouts}: {', '.join(excluded)}")
     if skipped:
         print(f"Skipped (no matching-language changes in plan): {', '.join(skipped)}")
+    print(f"Would change / changed ({len(changed)}): {', '.join(changed) or '-'}")
+    print(f"Nothing to change ({len(unchanged)}): {', '.join(unchanged) or '-'}")
     if failures:
         print(f"\nFAILED to push: {', '.join(failures)} -- resolve manually (likely needs a rebase).")
         sys.exit(1)
