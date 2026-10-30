@@ -49,6 +49,9 @@ function solrResponse(total, data) {
   };
 }
 
+// the name the scraper queries peviitor with (config legal name, uppercased)
+const LEGAL_NAME_UPPER = JSON.parse(fs.readFileSync('scraper/config/company.json', 'utf-8')).company.toUpperCase();
+
 const EXAMPLE_ANAF_RECORD = {
   cui: 12345678,
   name: 'EXAMPLE COMPANY SRL',
@@ -134,6 +137,32 @@ describe('company.js', () => {
   describe('validateAndGetCompany', () => {
     afterEach(() => {
       clearAllCaches();
+    });
+
+    it('uses the peviitor record whose name matches exactly, not the first one the API returns', async () => {
+      // api.peviitor.ro/v1/company/?name= does not filter: the first entry can be any company
+      mockFetch
+        .mockResolvedValueOnce(anafCompanyResponse({ ...EXAMPLE_ANAF_RECORD, name: 'ANAF SPELLING SRL' }))
+        .mockResolvedValueOnce(solrResponse(0, []))
+        .mockResolvedValueOnce(peviitorResponse([
+          { company: 'UNRELATED SRL' },
+          { company: LEGAL_NAME_UPPER }
+        ]));
+
+      const result = await company.validateAndGetCompany();
+
+      expect(result.company).toBe(LEGAL_NAME_UPPER);
+    });
+
+    it('falls back to the ANAF name when no peviitor record matches, never to an unrelated company', async () => {
+      mockFetch
+        .mockResolvedValueOnce(anafCompanyResponse({ ...EXAMPLE_ANAF_RECORD, name: 'ANAF SPELLING SRL' }))
+        .mockResolvedValueOnce(solrResponse(0, []))
+        .mockResolvedValueOnce(peviitorResponse([{ company: 'UNRELATED SRL' }]));
+
+      const result = await company.validateAndGetCompany();
+
+      expect(result.company).toBe('ANAF SPELLING SRL');
     });
 
     it('should return company data with status active', async () => {

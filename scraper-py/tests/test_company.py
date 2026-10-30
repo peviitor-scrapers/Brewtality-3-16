@@ -145,3 +145,20 @@ def test_validate_and_get_company_peviitor_failure_is_non_fatal(monkeypatch, req
 
     result = company.validate_and_get_company()
     assert result["status"] == "active"
+
+
+def test_get_company_from_peviitor_picks_the_exact_name_match(requests_mock):
+    """api.peviitor.ro/v1/company/?name= does not filter: the first entry can be any company."""
+    requests_mock.get(
+        company.PEVIITOR_COMPANY_URL,
+        json={"companies": [{"company": "UNRELATED SRL"}, {"company": "Acme Srl "}]},
+    )
+    assert company._get_company_from_peviitor("ACME SRL") == {"company": "Acme Srl "}
+
+
+def test_get_company_from_peviitor_returns_none_when_nothing_matches(requests_mock):
+    requests_mock.get(
+        company.PEVIITOR_COMPANY_URL,
+        json={"companies": [{"company": "UNRELATED SRL"}, {"id": "no-name"}]},
+    )
+    assert company._get_company_from_peviitor("ACME SRL") is None

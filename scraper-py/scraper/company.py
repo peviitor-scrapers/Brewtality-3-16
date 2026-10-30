@@ -101,8 +101,16 @@ def _get_company_from_peviitor(company_name: str) -> dict | None:
     )
     if not res.ok:
         raise RuntimeError(f"Peviitor API error: {res.status_code}")
-    companies = res.json().get("companies") or []
-    return companies[0] if companies else None
+    # api.peviitor.ro/v1/company/?name= does NOT filter server-side: it returns the
+    # same unfiltered first page whatever the query is. companies[0] would be an
+    # unrelated company, so keep only an exact (case-insensitive) name match; no
+    # match falls back to the ANAF name.
+    target = company_name.strip().upper()
+    for company in res.json().get("companies") or []:
+        name = company.get("company")
+        if isinstance(name, str) and name.strip().upper() == target:
+            return company
+    return None
 
 
 def _save_company_data(anaf_data: dict | None, peviitor_data: dict | None) -> dict:
