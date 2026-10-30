@@ -10,6 +10,7 @@
       "repo": "antibiotice-sa-nodejs-scraper",
       "local_dir": "antibiotice-sa-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -21,6 +22,7 @@
       "repo": "aerostar-nodejs-scraper",
       "local_dir": "aerostar-sa-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -32,6 +34,7 @@
       "repo": "turbomecanica-sa-nodejs-scraper",
       "local_dir": "turbomecanica-sa-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -43,6 +46,7 @@
       "repo": "cemacon-sa-nodejs-scraper",
       "local_dir": "cemacon-sa-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -54,6 +58,7 @@
       "repo": "cramele-cotnari-sa-nodejs-scraper",
       "local_dir": "cramele-cotnari-sa-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -65,6 +70,7 @@
       "repo": "hochland-romania-nodejs-scraper",
       "local_dir": "hochland-romania-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active",
       "notes": "README still shows unmodified template boilerplate (cosmetic, non-blocking)"
@@ -77,6 +83,7 @@
       "repo": "valrom-industrie-python-scraper",
       "local_dir": "valrom-industrie-python-scraper",
       "language": "py",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -88,6 +95,7 @@
       "repo": "betfair-scraper-py",
       "local_dir": "betfair-scraper-py",
       "language": "py",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -99,6 +107,7 @@
       "repo": "cris-tim-python-scraper",
       "local_dir": "cris-tim-python-scraper",
       "language": "py",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -110,6 +119,7 @@
       "repo": "kronospan-sebes-python-scraper",
       "local_dir": "kronospan-sebes-python-scraper",
       "language": "py",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -145,6 +155,7 @@
       "repo": "kingfisher-plc-nodejs-scraper",
       "local_dir": "kingfisher-plc-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -156,6 +167,7 @@
       "repo": "e-infra-sa-python-scraper",
       "local_dir": "e-infra-sa-python-scraper",
       "language": "py",
+      "layout": "legacy",
       "template_version": "v1",
       "status": "active",
       "notes": "Lives under the peviitor-scrapers org (not TheTatu13) and predates the template -- it was the original reference repo the Python variant was derived FROM. All internal links (README badges, docs/index.html, scraperFile in company.json) pointed at a stale owner (ale23yfm) from before the org transfer, so every button on the live page 404'd; fixed to peviitor-scrapers, docs/index.html re-themed to the dark fleet UI, and the dark test-results hub generator added to automation-testing.yml. Scrapes a structured applytojob.com ATS board (not a generic career-page HTML scrape), so scraper/index.py's own parsing logic is intentionally NOT the generic self-healing-selector template -- that part was left as-is."
@@ -168,6 +180,7 @@
       "repo": "mejix-srl-nodejs-scraper",
       "local_dir": "mejix-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
       "notes": "Was never registered here after the sebiboga transfer -- GitHub Pages wasn't even enabled (fixed 2026-09-25) and homepage URL still pointed at peviitor-scrapers.github.io (fixed). Uses the older flat scraper/ layout (no scraper/ subfolder) and the job-seeker-ro-spider.yml workflow name. Branch protection added 2026-10-02; weekly health-summary NOT added because Issues are disabled on this repo (gh issue list fails) -- enable Issues in repo settings first."
@@ -180,6 +193,7 @@
       "repo": "evolution-gaming-ro-python-scraper",
       "local_dir": "evolution-gaming-ro-python-scraper",
       "language": "py",
+      "layout": "legacy",
       "template_version": "v1",
       "status": "active",
       "notes": "Lives under the peviitor-scrapers org and, like e-infra-sa-python-scraper, was derived before its GitHub org transfer -- every internal link (README badges, docs/index.html, docs/company.json + scraper/config/company.json scraperFile, ai/*.md, CONTRIBUTING.md, and a hardcoded assertion in tests/consistency/test_readme.py) still pointed at the stale ale23yfm owner, 404'ing every button on the live page. Fixed to peviitor-scrapers everywhere (90/90 tests pass). docs/index.html re-themed to the dark fleet UI (was still on the original warm/cream theme) and the dark test-results hub generator (navbar with direct Unit/Integration/E2E links + suite-path-to-GitHub-source links) added to automation-testing.yml, matching the current template. Scrapes the EVOLUTION WordPress JSON careers API (careers.evolution.com), not a generic HTML board -- scraper/index.py's parsing logic was left as-is."
@@ -192,9 +206,10 @@
       "repo": "connatix-native-exchange-romania-srl-nodejs-scraper",
       "local_dir": "connatix-native-exchange-romania-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-09-28 and never registered here. Was failing 10/10 CI runs because src/anaf.js only used demoanaf.ro, which now answers 402 Payment Required; ported the template anaf.js (cuiscan/cuifirma fallbacks) + its unit test (2026-10-02). README/docs/index.html/scraperFile/CODEOWNERS still pointed at sebiboga -- repointed to TheTatu13. Derived from the EPAM template (older flat layout, no scraper/ subfolder). Branch protection (no force-push/deletion) and weekly health-summary added 2026-10-02. template-sync-check intentionally NOT added: this flat EPAM-derived layout is not syncable from scraper-js and would open a permanent false 'template update available' issue. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-09-28 and never registered here. Was failing 10/10 CI runs because src/anaf.js only used demoanaf.ro, which now answers 402 Payment Required; ported the template anaf.js (cuiscan/cuifirma fallbacks) + its unit test (2026-10-02). README/docs/index.html/scraperFile/CODEOWNERS still pointed at sebiboga -- repointed to TheTatu13. Derived from the EPAM template (older flat layout, no scraper/ subfolder). Branch protection (no force-push/deletion) and weekly health-summary added 2026-10-02. template-sync-check intentionally NOT added: this flat EPAM-derived layout is not syncable from scraper-js and would open a permanent false 'template update available' issue. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "SOBIS AP S.R.L.",
@@ -204,9 +219,10 @@
       "repo": "sobis-ap-srl-nodejs-scraper",
       "local_dir": "sobis-ap-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-09-28 and never registered here. CI was green only because a cached company.json masked demoanaf.ro now answering 402 Payment Required; ported the template anaf.js (cuiscan/cuifirma fallbacks) + its unit test (2026-10-02). Stale sebiboga links in README/docs/CODEOWNERS repointed to TheTatu13. Derived from the EPAM template (older flat layout, no scraper/ subfolder). Branch protection (no force-push/deletion) and weekly health-summary added 2026-10-02. template-sync-check intentionally NOT added: this flat EPAM-derived layout is not syncable from scraper-js and would open a permanent false 'template update available' issue. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-09-28 and never registered here. CI was green only because a cached company.json masked demoanaf.ro now answering 402 Payment Required; ported the template anaf.js (cuiscan/cuifirma fallbacks) + its unit test (2026-10-02). Stale sebiboga links in README/docs/CODEOWNERS repointed to TheTatu13. Derived from the EPAM template (older flat layout, no scraper/ subfolder). Branch protection (no force-push/deletion) and weekly health-summary added 2026-10-02. template-sync-check intentionally NOT added: this flat EPAM-derived layout is not syncable from scraper-js and would open a permanent false 'template update available' issue. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "SMEDIX LLC ST. LOUIS SUCURSALA CLUJ NAPOCA",
@@ -216,9 +232,10 @@
       "repo": "smedix-nodejs-scraper",
       "local_dir": "smedix-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "YARDI CALL CENTER SRL",
@@ -228,9 +245,10 @@
       "repo": "yardi-call-center-srl-nodejs-scraper",
       "local_dir": "yardi-call-center-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "RAPEL SRL",
@@ -240,9 +258,10 @@
       "repo": "rapel-srl-nodejs-scraper",
       "local_dir": "rapel-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 onto api.peviitor.ro (no secret needed). Its CIF has 7 digits: the API needs the 8-digit padded CIF, so the company doc and jobs now use the padded id. A legacy UNPADDED company doc remains in Solr and must be deleted by a maintainer. Manual job-recovery workflow still uses direct SOLR + SOLR_AUTH (untouched)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 onto api.peviitor.ro (no secret needed). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Its CIF has 7 digits: the API needs the 8-digit padded CIF, so the company doc and jobs now use the padded id. Anything still keyed by the old UNPADDED cif must be deleted or re-keyed by a maintainer: the legacy company doc and any job docs that still carry the unpadded cif. Manual job-recovery workflow still uses direct SOLR + SOLR_AUTH (untouched)."
     },
     {
       "company": "GAMINVEST SRL",
@@ -252,9 +271,10 @@
       "repo": "gaminvest-srl-nodejs-scraper",
       "local_dir": "gaminvest-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Integration test now selects the company by CIF (two companies are named GAMINVEST SRL). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Integration test now selects the company by CIF (two companies are named GAMINVEST SRL). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "RANDSTAD ROMANIA SRL",
@@ -264,9 +284,10 @@
       "repo": "randstad-romania-nodejs-scraper",
       "local_dir": "randstad-romania-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). OPEN: the Solr company core record for this CIF still holds EPAM data, so integration tests fail until it is corrected by the Solr admins. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). OPEN: the Solr company core record for this CIF still holds EPAM data, so integration tests fail until it is corrected by the Solr admins. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the jobRapid.ro source 2026-10-03 (commit d8f697a): its company page was RAPEL SRL's jobs, so it fought Rapel for the same URL keys."
     },
     {
       "company": "PRINCIPAL33 S.R.L.",
@@ -276,9 +297,10 @@
       "repo": "principal33-srl-nodejs-scraper",
       "local_dir": "principal33-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Workflows had been auto-disabled for inactivity; re-enabled. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Workflows had been auto-disabled for inactivity; re-enabled. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "CONTINENTAL HOTELS SA",
@@ -288,9 +310,10 @@
       "repo": "continental-hotels-srl-nodejs-scraper",
       "local_dir": "continental-hotels-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). OPEN: the Solr company record has no career field, so one integration test fails until it is added. Migrated 2026-10-03 onto api.peviitor.ro (no secret needed). Its CIF has 7 digits: the API needs the 8-digit padded CIF, so the company doc and jobs now use the padded id. A legacy UNPADDED company doc remains in Solr and must be deleted by a maintainer. Manual job-recovery workflow still uses direct SOLR + SOLR_AUTH (untouched)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). The padded company doc 01559737 now has its career field (checked on api.peviitor.ro 2026-10-30), so the earlier 'no career field' integration failure no longer applies to it; the integration test itself was not re-run. Migrated 2026-10-03 onto api.peviitor.ro (no secret needed). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Its CIF has 7 digits: the API needs the 8-digit padded CIF, so the company doc and jobs now use the padded id. Anything still keyed by the old UNPADDED cif must be deleted or re-keyed by a maintainer: the legacy company doc and any job docs that still carry the unpadded cif. Manual job-recovery workflow still uses direct SOLR + SOLR_AUTH (untouched)."
     },
     {
       "company": "SENIOR SOFTWARE AGENCY SRL",
@@ -300,9 +323,10 @@
       "repo": "senior-software-agency-srl-nodejs-scraper",
       "local_dir": "senior-software-agency-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga on 2026-10-02. Ported the template anaf.js (cuiscan/cuifirma fallbacks, demoanaf.ro now answers 402) + its unit test; sebiboga links repointed to TheTatu13 (2026-10-03). EPAM-derived flat layout (not syncable from scraper-js). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "AMA R&D GROUPE SRL",
@@ -324,6 +348,7 @@
       "repo": "wizzair-nodejs-scraper",
       "local_dir": "wizzair-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
       "notes": "Built 2026-10-03 on the SAP SuccessFactors sitemap (careers.wizzair.com/sitemap.xml -> job pages, RO filter). Company: WIZZ AIR MALTA LIMITED LUQA - SUCURSALA OTOPENI (CIF 46966293). Premium layer (retry/backoff, canary, dry-run) + official ANAF fallback. Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix); no secret needed. Verified live: 2 jobs on peviitor.ro."
@@ -336,9 +361,10 @@
       "repo": "sennder-bucharest-srl-nodejs-scraper",
       "local_dir": "sennder-bucharest-srl-nodejs-scraper",
       "language": "js",
+      "layout": "flat",
       "template_version": "v1",
       "status": "active",
-      "notes": "Transferred from sebiboga. Gem job-board API (api.gem.com). Premium layer (retry, canary, dry-run, official-ANAF fallback). CODEOWNERS/scraperFile repointed to TheTatu13 (2026-10-03). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array). Removed the misattributed jobrapid source (it fought Rapel for the same URL keys)."
+      "notes": "Transferred from sebiboga. Gem job-board API (api.gem.com). Premium layer (retry, canary, dry-run, official-ANAF fallback). CODEOWNERS/scraperFile repointed to TheTatu13 (2026-10-03). Migrated 2026-10-03 off direct-SOLR+SOLR_AUTH onto api.peviitor.ro (same layer as mejix/wizzair); no secret needed. Manual job-recovery-from-disaster workflow still uses direct SOLR + SOLR_AUTH (left untouched). upsertJobs skips the upload on 0 jobs (API 400s on an empty array)."
     },
     {
       "company": "ALRO SA",
@@ -348,6 +374,7 @@
       "repo": "alro-nodejs-scraper",
       "local_dir": "alro-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -359,6 +386,7 @@
       "repo": "ursus-breweries-nodejs-scraper",
       "local_dir": "ursus-breweries-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -370,6 +398,7 @@
       "repo": "auchan-romania-nodejs-scraper",
       "local_dir": "auchan-romania-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -381,6 +410,7 @@
       "repo": "med-life-nodejs-scraper",
       "local_dir": "med-life-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -392,6 +422,7 @@
       "repo": "carrefour-romania-nodejs-scraper",
       "local_dir": "carrefour-romania-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -403,6 +434,7 @@
       "repo": "roumasport-nodejs-scraper",
       "local_dir": "roumasport-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -414,6 +446,7 @@
       "repo": "help-net-farma-nodejs-scraper",
       "local_dir": "help-net-farma-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -425,6 +458,7 @@
       "repo": "bitdefender-nodejs-scraper",
       "local_dir": "bitdefender-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -436,6 +470,7 @@
       "repo": "silcotub-nodejs-scraper",
       "local_dir": "silcotub-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -447,6 +482,7 @@
       "repo": "bmw-techworks-romania-nodejs-scraper",
       "local_dir": "bmw-techworks-romania-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -458,6 +494,7 @@
       "repo": "arobs-transilvania-software-sa-nodejs-scraper",
       "local_dir": "arobs-transilvania-software-sa-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -469,6 +506,7 @@
       "repo": "borgdesign-srl-nodejs-scraper",
       "local_dir": "borgdesign-srl-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -480,6 +518,7 @@
       "repo": "accesa-it-systems-nodejs-scraper",
       "local_dir": "accesa-it-systems-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -491,6 +530,7 @@
       "repo": "garmin-cluj-nodejs-scraper",
       "local_dir": "garmin-cluj-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -502,6 +542,7 @@
       "repo": "intertek-industry-services-romania-nodejs-scraper",
       "local_dir": "intertek-industry-services-romania-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -513,6 +554,7 @@
       "repo": "sedona-digital-nodejs-scraper",
       "local_dir": "sedona-digital-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -524,6 +566,7 @@
       "repo": "zitec-com-nodejs-scraper",
       "local_dir": "zitec-com-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -535,6 +578,7 @@
       "repo": "sof-medica-nodejs-scraper",
       "local_dir": "sof-medica-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -546,6 +590,7 @@
       "repo": "nuvei-services-romania-nodejs-scraper",
       "local_dir": "nuvei-services-romania-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     },
@@ -557,6 +602,7 @@
       "repo": "fme-nodejs-scraper",
       "local_dir": "fme-nodejs-scraper",
       "language": "js",
+      "layout": "template",
       "template_version": "v1",
       "status": "active"
     }
