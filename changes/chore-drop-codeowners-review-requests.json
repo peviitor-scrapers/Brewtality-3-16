@@ -1,0 +1,15 @@
+{
+  "commit_message": "chore: drop CODEOWNERS review requests\n\nPropagated from the Brewtality-3-16 template. The CODEOWNERS entry made GitHub request a review, and email the owner, on every pull request, including each Dependabot PR (one email per PR across the whole fleet). Branch protection does not require code-owner reviews, so the file only produced notifications. It is now comment-only.",
+  "changes": [
+    {
+      "lang": "js",
+      "src": ".github/CODEOWNERS",
+      "requires_text": "@"
+    },
+    {
+      "lang": "py",
+      "src": ".github/CODEOWNERS",
+      "requires_text": "@"
+    }
+  ]
+}

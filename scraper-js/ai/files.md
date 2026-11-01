@@ -78,7 +78,7 @@
 | `.env.local` | Local environment variables - NOT committed |
 | `CHANGELOG.md` | Version history and notable changes |
 | `CONTRIBUTING.md` | Contribution guidelines |
-| `.github/CODEOWNERS` | Code ownership rules for PR reviews |
+| `.github/CODEOWNERS` | Intentionally ownerless (no auto review requests / emails on every PR) |
 | `.github/workflows/scrape.yml` | Daily scraping workflow (6 AM UTC) |
 | `.github/workflows/tests.yml` | Automated tests on every push/PR |
 | `.github/workflows/job-deep-validate.yml` | Manual deep validation (content mode — GET + body scan) |
