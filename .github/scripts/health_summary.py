@@ -11,11 +11,26 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 
 
-def gh(*args: str) -> str:
-    return subprocess.run(["gh", *args], check=True, capture_output=True, text=True).stdout
+def gh(*args: str, retries: int = 3) -> str:
+    """Run `gh`, retrying transient failures; on final failure raise with gh's own stderr.
+
+    A bare CalledProcessError hides the reason (rate limit, 5xx, ...), which made the
+    weekly digest impossible to diagnose from the Actions log.
+    """
+    last = ""
+    for attempt in range(1, retries + 1):
+        p = subprocess.run(["gh", *args], capture_output=True, text=True)
+        if p.returncode == 0:
+            return p.stdout
+        last = (p.stderr or p.stdout or "").strip()
+        print(f"gh {' '.join(args[:2])} failed (attempt {attempt}/{retries}): {last}", file=sys.stderr)
+        if attempt < retries:
+            time.sleep(5 * attempt)
+    raise RuntimeError(f"gh {' '.join(args[:2])} failed after {retries} attempts: {last}")
 
 
 def main() -> None:
@@ -67,7 +82,7 @@ def main() -> None:
         "",
         table,
         "",
-        f"**Total runs:** {total_runs} · **Failed:** {total_failed}",
+        f"**Total runs:** {total_runs} | **Failed:** {total_failed}",
     ]
     if failed_lines:
         body_parts += ["", "### Failed runs", *failed_lines]
@@ -96,6 +111,21 @@ def main() -> None:
     else:
         url = gh("issue", "create", "--title", title, "--label", label, "--body", body)
         print(f"Created issue: {url.strip()}")
+
+    # Keep the issue list clean: only the newest digest stays open. Older digests are
+    # this script's own issues, so closing them is within its remit.
+    try:
+        open_digests = json.loads(gh(
+            "issue", "list", "--label", label, "--state", "open",
+            "--limit", "100", "--json", "number,title",
+        ))
+        for issue in open_digests:
+            if issue["title"] != title:
+                gh("issue", "close", str(issue["number"]),
+                   "--comment", f"Superseded by {title}.", "--reason", "not planned")
+                print(f"Closed superseded #{issue['number']}")
+    except Exception as exc:  # cleanup must never fail the digest itself
+        print(f"Could not close older digests: {exc}", file=sys.stderr)
 
 
 if __name__ == "__main__":
